@@ -23,7 +23,7 @@ function ColorConverter(props) {
     };
 
     const isHexColorValid = (hex) => {
-        const regex = /^#[0-9A-Fa-f]{6}$/;
+        const regex = /^#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3}$/;
         return regex.test(hex);
     };
 
@@ -37,13 +37,13 @@ function ColorConverter(props) {
         const b = parseInt(hex.slice(5, 7), 16);
         return `RGB(${r}, ${g}, ${b})`;
     };
-    
+
 
     return (
         <div className="container" style={containerStyle}>
             <h2>Color Converter</h2>
-            <form  className="ColorConventer-Form" onSubmit={onSubmit}>
-                <input id="color" name="color" className="ColorConverter-Input" onChange={onValueChange} value={hexColor}/>
+            <form className="ColorConventer-Form" onSubmit={onSubmit}>
+                <input id="color" name="color" className="ColorConverter-Input" onChange={onValueChange}  maxLength="7" defaultValue="#" />
                 <label className="ColorConverter-Label" htmlFor="color"> {error ? 'Error!' : rgbColor}</label>
             </form>
         </div>
@@ -52,3 +52,6 @@ function ColorConverter(props) {
 
 
 export default ColorConverter
+
+
+// value={hexColor}
